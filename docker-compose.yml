@@ -1,0 +1,13 @@
+services:
+  api:
+    build: .
+    container_name: product-category-api
+    ports:
+      - "8000:8000"
+    environment:
+      DB_HOST: host.docker.internal
+      DB_PORT: "3306"
+      DB_USER: root
+      DB_PASSWORD: ""
+      DB_NAME: ai_product_db
+    restart: unless-stopped
