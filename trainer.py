@@ -33,6 +33,7 @@ def train_model():
     # -----------------------------
 
     df = get_training_data()
+    #df = pd.DataFrame(df)  # Ensure df is a DataFrame
 
     df["product_name"] = df["product_name"].apply(clean_text)
 
@@ -46,7 +47,7 @@ def train_model():
 
     )
 
-    X = vectorizer.fit_transform(df["product_name"])
+    X = vectorizer.fit_transform(df["product_name"]) # convert product names to TF-IDF features
 
     y = df["category_name"]
 
@@ -56,7 +57,7 @@ def train_model():
 
         class_weight="balanced"
 
-    )
+    ) # in this case, we are using Logistic Regression as the model for multi-class classification
 
     try:
         X_train, X_test, y_train, y_test = train_test_split(
